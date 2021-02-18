@@ -1,21 +1,19 @@
 package com.DANit.IBATech;
 
-import java.io.StreamCorruptedException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class HW2 {
     public static char[][] fires = new char[6][6];
     static int l = 0;
-     static int[] i1j1 = new int[2];
-     static int i1 = 0;
-     static int j1 = 0;
-     static int[] i2j2 = new int[2];
-     static int i2 = 0;
-     static int j2 = 0;
-     static int count = 0;
-     static int count1 = 0;
-
+    static int[] i1j1 = new int[2];
+    static int i1 = 0;
+    static int j1 = 0;
+    static int[] i2j2 = new int[2];
+    static int i2 = 0;
+    static int j2 = 0;
+    static int count = 0;
+    static int count1 = 0;
+    static boolean a = true;
 
     public static void main(String[] args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
@@ -29,16 +27,18 @@ public class HW2 {
             boolean t = true;
             while (t) {
                 System.out.println();
-                while (isInt(sc.next())) { }
+                while (isInt(sc.next())) {
+                }
                 i1j1[0] = l;
                 i1 = l;
-                while (isInt(sc.next())) { }
+                while (isInt(sc.next())) {
+                }
                 i1j1[1] = l;
                 j1 = l;
                 for (int i = 0; i < fires.length; i++) {
                     System.out.print("\n" + i + " | ");
-                    for (int j = 0; j < fires[i].length-1; j++) {
-                        if (i1 == i && j1 == j+1) {
+                    for (int j = 0; j < fires[i].length - 1; j++) {
+                        if (i1 == i && j1 == j + 1) {
                             fires[i][j] = '*';
                             System.out.print(fires[i][j] + " | ");
                         } else if (i == 0) {
@@ -49,20 +49,20 @@ public class HW2 {
                     }
                 }
                 System.out.println("");
-                        while (isInt(sc.next())) {
-                        }
-                        i2j2[0] = l;
-                        i2 = l;
-                        while (isInt(sc.next())) {
-                        }
-                        i2j2[1] = l;
-                        j2 = l;
+                while (isInt(sc.next())) {
+                }
+                i2j2[0] = l;
+                i2 = l;
+                while (isInt(sc.next())) {
+                }
+                i2j2[1] = l;
+                j2 = l;
                 if (i2 == i1 && j2 == j1) {
                     for (int i = 0; i < fires.length; i++) {
                         System.out.print("\n" + i + " | ");
-                        for (int j = 0; j < fires[i].length-1; j++) {
-                            if (i1 == i && j1 == j+1) {
-                                fires[i][j] = '*';
+                        for (int j = 0; j < fires[i].length - 1; j++) {
+                            if (i1 == i && j1 == j + 1) {
+                                fires[i][j] = 'x';
                                 System.out.print(fires[i][j] + " | ");
                             } else if (i == 0) {
                                 System.out.print((j + 1) + " | ");
@@ -73,17 +73,18 @@ public class HW2 {
                     }
 
                     count++;
-                        if (count == 4){
-                            t = false;
-                        }
+                    if (count == 4) {
+                        t = false;
                         System.out.println("");
-                }
-                else {
+                        break;
+                    }
+                    System.out.println("");
+                } else {
                     for (int i = 0; i < fires.length; i++) {
                         System.out.print("\n" + i + " | ");
                         for (int j = 0; j < fires[i].length - 1; j++) {
-                            if (i1 == i && j1 == j+1) {
-                                fires[i][j] = 'x';
+                            if (i1 == i && j1 == j) {
+                                fires[i][j] = '*';
                                 System.out.print(fires[i][j] + " | ");
                             } else if (i == 0) {
                                 System.out.print((j + 1) + " | ");
@@ -91,10 +92,11 @@ public class HW2 {
                                 System.out.print(fires[i][j] + " | ");
                             }
                         }
-                   }
+                    }
                     count1++;
-                    if (count == 8) {
+                    if (count1 == 4) {
                         t = true;
+                        break;
                     }
                 }
 
@@ -102,7 +104,7 @@ public class HW2 {
             for (int i = 0; i < fires.length; i++) {
                 System.out.print("\n" + i + " | ");
                 for (int j = 0; j < fires[i].length - 1; j++) {
-                     if (i == 0) {
+                    if (i == 0) {
                         System.out.print((j + 1) + " | ");
                     } else {
                         System.out.print(fires[i][j] + " | ");
@@ -111,19 +113,37 @@ public class HW2 {
             }
 
 
-                    System.out.println("");
+            if (count == 4) {
+                count = 0;
+                System.out.println("");
+                System.out.println("You are won!");
+            } else if (count1 == 4) {
+                count1 = 0;
+                System.out.println("");
+                System.out.println("Game over");
+            }
+
+
+            System.out.println("");
+
 
             System.out.println("\n You want continue the game print yes or no: y/n");
+            boolean x = true;
             char answer = sc.next().charAt(0);
-            while (!(answer == 'y' || answer == 'n')) {
-                System.out.println("Print y/n");
-                answer = sc.next().charAt(0);
+            while (x) {
                 if (answer == 'y') {
                     y = true;
+                    x = true;
+
                     break;
                 } else if (answer == 'n') {
+
+                    x = false;
                     y = false;
                     break;
+                } else {
+                    System.out.println("Print y/n");
+                    answer = sc.next().charAt(0);
                 }
             }
         }
@@ -167,22 +187,29 @@ public class HW2 {
         try {
             Scanner sc = new Scanner(System.in);
             l = Integer.parseInt(s);
-            boolean a = true;
-            while (a){
-                if (l <= 5){
+
+            while (a) {
+                if (Integer.parseInt(s) >= 1 && Integer.parseInt(s) <= 5) {
+                    a = true;
+                    break;
+                } else if (Integer.parseInt(s) <= 0) {
+                    System.out.println("print digit aroun 1-5");
+                    return true;
+                } else if (Integer.parseInt(s) > 5) {
+                    System.out.println("print digit around 1-5");
+                    return true;
+                } else if (isInt(sc.next()) && l < 5) {
                     a = false;
                     break;
-                }
-                else {
-                    System.out.println("print small than 6");
-                    isInt(sc.next());
-                    a=true;}
+                } else a = true;
+
             }
 
             return false;
         } catch (NumberFormatException ex) {
-
+            Scanner sc = new Scanner(System.in);
             System.out.println("Print digit");
+            a = true;
             return true;
         }
     }

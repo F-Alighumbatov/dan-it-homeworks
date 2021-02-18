@@ -1,6 +1,5 @@
 package com.DANit.IBATech;
 
-import javax.swing.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -22,7 +21,7 @@ public class HW1 {
 
     static boolean isInt(String s) {   // if input String give exception
         try {
-            Scanner sc =new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);
             inputnumber = Integer.parseInt(s);
             boolean a = true;
             while (a) {
@@ -70,8 +69,6 @@ public class HW1 {
                 System.out.print(nameofPlayers[i]);
                 System.out.print(":  Print number\n");
                 random = (int) (Math.random() * 100);
-                System.out.println(random);
-
                 for (int j = 0; j < result[i].length; j++) {
                     while (isInt(sc.next())) {
                     }
@@ -103,19 +100,23 @@ public class HW1 {
             }
             System.out.println("\nYou want continue the game print yes or no: y/n");
             z = 0;
+            boolean a = true;
             char answer = sc.next().charAt(0);
-            while (!(answer == 'y' || answer == 'n')) {
-                System.out.println("Print y/n");
-                answer = sc.next().charAt(0);
+            while (a) {
                 if (answer == 'y') {
                     y = true;
+                    a = true;
+                    break;
                 } else if (answer == 'n') {
+
+                    a = false;
                     y = false;
                     break;
+                } else {
+                    System.out.println("Print y/n");
+                    answer = sc.next().charAt(0);
                 }
             }
-
-
         }
         Thread.sleep(250);
         System.out.print(".");
